@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * 
+ * Project:	Untangle
+ * 
+ * Author:	Aleksandar Dalemski, a_dalemski@yahoo.com
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Name="Untangle"
+           Id="D04C86FD-00ED-4D51-A56C-97EAE2E70E2F"
+           UpgradeCode="6920624B-35EA-49DF-9438-F86977CDC1EC"
+           Language="1033"
+           Codepage="1252"
+           Version="1.1.0"
+           Manufacturer="Aleksandar Dalemski">
+
+    <!-- Package information -->
+    <Package Id="*" InstallerVersion="100" Compressed="yes" />
+
+    <PropertyRef Id="NETFRAMEWORK40CLIENT" />
+    <PropertyRef Id="NETFRAMEWORK40FULL" />
+    <PropertyRef Id="NETFRAMEWORK45" />
+
+    <Condition Message="!(loc.NetFx40NotInstalled)">
+      Installed
+      OR NETFRAMEWORK40CLIENT
+      OR NETFRAMEWORK40FULL
+      OR NETFRAMEWORK45
+    </Condition>
+
+    <!-- Main and only media cabinet -->
+    <Media Id="1"
+           Cabinet="Untangle.cab"
+           EmbedCab="yes" />
+
+    <!-- Installation package directory structure -->
+    <Directory Id="TARGETDIR"
+               Name="SourceDir">
+
+      <!-- Application folder path -->
+      <Directory Id="ProgramFilesFolder"
+                 Name="PFiles">
+        <Directory Id="INSTALLDIR"
+                   Name="Untangle">
+          <!-- Main application executable -->
+          <Component Id="MainExecutable"
+                     Guid="58F6637A-D951-47BB-BF4B-D1FF461F6169">
+            <File Id="Untangle.exe"
+                  Name="Untangle.exe"
+                  Source="!(bindpath.BinPath)\Untangle.exe"
+                  KeyPath="yes" />
+          </Component>
+
+          <!-- Third-party libraries -->
+          <Component Id="ThirdParty.WPFLocalizeExtension"
+                     Guid="CB5DEA76-7D15-4113-91D2-DF2AAC617CA8">
+            <File Id="WPFLocalizeExtension.dll"
+                  Name="WPFLocalizeExtension.dll"
+                  Source="!(bindpath.BinPath)\WPFLocalizeExtension.dll"
+                  KeyPath="yes" />
+          </Component>
+
+          <Component Id="ThirdParty.XAMLMarkupExtensions"
+                     Guid="E895ACA9-0811-44A0-ADE6-32792DF74995">
+            <File Id="XAMLMarkupExtensions.dll"
+                  Name="XAMLMarkupExtensions.dll"
+                  Source="!(bindpath.BinPath)\XAMLMarkupExtensions.dll"
+                  KeyPath="yes" />
+          </Component>
+
+          <!-- bg-BG localization resources -->
+          <Directory Id="BgBgLocalizationDir"
+                     Name="bg-bg">
+            <Component Id="MainExecutable.bg_bg"
+                       Guid="A96684C4-C9B0-408B-B1A5-26CAFB0C1E4D">
+              <File Id="Untangle.exe.bg_bg"
+                    Name="Untangle.resources.dll"
+                    Source="!(bindpath.BinPath)\bg-bg\Untangle.resources.dll"
+                    KeyPath="yes" />
+            </Component>
+          </Directory>
+
+          <!-- sl-SI localization resources -->
+          <Directory Id="SlSiLocalizationDir"
+                     Name="sl-si">
+            <Component Id="MainExecutable.sl_si"
+                       Guid="B555FDA5-02A2-4150-8490-F53BA14E3FDB">
+              <File Id="Untangle.exe.sl_si"
+                    Name="Untangle.resources.dll"
+                    Source="!(bindpath.BinPath)\sl-si\Untangle.resources.dll"
+                    KeyPath="yes" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <!-- Application folder in the programs menu -->
+      <Directory Id="ProgramMenuFolder"
+                 Name="Programs">
+        <Directory Id="UntangleProgramMenuDir"
+                   Name="Untangle">
+          <!-- Optional folder and shortcut for the application in the programs menu -->
+          <Component Id="ProgramMenuShortcut"
+                     Guid="0EF4D68D-135D-46CB-8F4F-3BB91CAECD9D">
+            <Condition>PROGRAMMENUSHORTCUT="1"</Condition>
+            <RemoveFolder Id="UntangleProgramMenuDir"
+                          On="uninstall" />
+            <RegistryValue Root="HKCU"
+                           Key="Software\[ProductName]"
+                           Name="ProgramMenuDir"
+                           Type="integer"
+                           Value="1"
+                           KeyPath="yes" />
+            <Shortcut Id="UntangleProgramMenuShortcut"
+                      Name="Untangle"
+                      Description="!(loc.Shortcut_Description)"
+                      Target="[#Untangle.exe]"
+                      WorkingDirectory="INSTALLDIR"
+                      Icon="Untangle.ico"
+                      IconIndex="0" />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <!-- Desktop folder -->
+      <Directory Id="DesktopFolder"
+                 Name="Desktop">
+        <!-- Optional shortcut for the application on the desktop -->
+        <Component Id="DesktopShortcut"
+                   Guid="E7381993-F5EC-420E-AD0E-016EC3B8A8A5">
+          <Condition>DESKTOPSHORTCUT="1"</Condition>
+          <Shortcut Id="UntangleDesktopShortcut"
+                    Name="Untangle"
+                    Description="!(loc.Shortcut_Description)"
+                    Target="[#Untangle.exe]"
+                    WorkingDirectory="INSTALLDIR"
+                    Icon="Untangle.ico"
+                    IconIndex="0" />
+          <RegistryValue Root="HKCU"
+                         Key="Software\[ProductName]"
+                         Name="DesktopShortcut"
+                         Type="integer"
+                         Value="1"
+                         KeyPath="yes" />
+        </Component>
+      </Directory>
+    </Directory>
+
+    <!-- Main executable and libraries feature -->
+    <Feature Id="MainProgram"
+             Title="!(loc.Feature_MainProgram)"
+             Description="!(loc.Feature_MainProgram_Description)"
+             AllowAdvertise="no"
+             Absent="disallow"
+             ConfigurableDirectory="INSTALLDIR"
+             Level="1">
+      <ComponentRef Id="MainExecutable" />
+      <ComponentRef Id="ThirdParty.WPFLocalizeExtension" />
+      <ComponentRef Id="ThirdParty.XAMLMarkupExtensions" />
+      <ComponentRef Id="ProgramMenuShortcut" />
+      <ComponentRef Id="DesktopShortcut" />
+    </Feature>
+
+    <!-- Optional localizations feature -->
+    <Feature Id="Localizations"
+             Title="!(loc.Feature_Localizations)"
+             Description="!(loc.Feature_Localizations_Description)"
+             AllowAdvertise="no"
+             InstallDefault="local"
+             ConfigurableDirectory="INSTALLDIR"
+             Level="10">
+      <!-- Dummy component to work around a bug in Windows Installer -->
+      <Component Id="LocalizationsDummy"
+                 Directory="TARGETDIR"
+                 Guid="51C5E11E-B0EF-4495-854B-BD22625F6742" />
+
+      <!-- bg-BG localization feature -->
+      <Feature Id="BgBgLocalization"
+               Title="!(loc.Feature_BgBgLocalization)"
+               Description="!(loc.Feature_BgBgLocalization_Description)"
+               AllowAdvertise="no"
+               InstallDefault="local"
+               ConfigurableDirectory="INSTALLDIR"
+               Level="10">
+        <ComponentRef Id="MainExecutable.bg_bg" />
+      </Feature>
+
+      <!-- sl-SI localization feature -->
+      <Feature Id="SlSiLocalization"
+               Title="!(loc.Feature_SlSiLocalization)"
+               Description="!(loc.Feature_SlSiLocalization_Description)"
+               AllowAdvertise="no"
+               InstallDefault="local"
+               ConfigurableDirectory="INSTALLDIR"
+               Level="10">
+        <ComponentRef Id="MainExecutable.sl_si" />
+      </Feature>
+    </Feature>
+
+    <!-- Main icon of the application -->
+    <Icon Id="Untangle.ico"
+          SourceFile="!(bindpath.SolutionRoot)\Untangle\Resources\Untangle.ico" />
+
+    <!-- Set the icon of the application in Add/Remove Programs -->
+    <Property Id="ARPPRODUCTICON"
+              Value="Untangle.ico" />
+
+    <!-- Enable creation of folder and shortcut for the application in the programs menu by
+         default -->
+    <Property Id="PROGRAMMENUSHORTCUT"
+              Value="1" />
+
+    <!-- License RTF file displayed by the WixUI_Mondo dialog chain -->
+    <WixVariable Id="WixUILicenseRtf"
+                 Value="!(bindpath.SolutionRoot)\License.rtf" />
+
+    <!-- Untangle setup wizard dialog chain import -->
+    <UIRef Id="UntangleSetupUI" />
+  </Product>
+</Wix>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * 
+ * Project:	Untangle
+ * 
+ * Author:	Aleksandar Dalemski, a_dalemski@yahoo.com
+-->
+<WixLocalization Culture="en-us" Codepage="1252" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <!-- Installation errors -->
+  <String Id="NetFx40NotInstalled" Overridable="yes">A suitable version of .NET Framework is not installed on the computer. Please install .NET Framework 4.0 or newer and run [ProductName] Setup again.</String>
+
+  <!-- Shortcut strings -->
+  <String Id="Shortcut_Description" Overridable="yes">Play Untangle 1.1.0</String>
+
+  <!-- Feature strings -->
+  <String Id="Feature_MainProgram" Overridable="yes">Required files</String>
+  <String Id="Feature_MainProgram_Description" Overridable="yes">The game executable and other libraries required to run the game.</String>
+  <String Id="Feature_Localizations" Overridable="yes">Additional languages</String>
+  <String Id="Feature_Localizations_Description" Overridable="yes">Optional localizations of the game in several languages.</String>
+  <String Id="Feature_BgBgLocalization" Overridable="yes">Bulgarian</String>
+  <String Id="Feature_BgBgLocalization_Description" Overridable="yes">A Bulgarian localization of the game.</String>
+  <String Id="Feature_SlSiLocalization" Overridable="yes">Slovenian</String>
+  <String Id="Feature_SlSiLocalization_Description" Overridable="yes">A Slovenian localization of the game.</String>
+
+  <!-- Resource strings for the shortcut options dialog -->
+  <String Id="ShortcutsDlg_Title" Overridable="yes">[ProductName] Setup</String>
+  <String Id="ShortcutsDlgDescription" Overridable="yes">Choose additional options for the installation and click Next to continue.</String>
+  <String Id="ShortcutsDlgTitle" Overridable="yes">{\WixUI_Font_Title}Additional Options</String>
+  <String Id="ShortcutsDlgProgramMenuShortcutCheckBox" Overridable="yes">Create &amp;start menu shortcut</String>
+  <String Id="ShortcutsDlgDesktopShortcutCheckBox" Overridable="yes">Create &amp;desktop shortcut</String>
+</WixLocalization>

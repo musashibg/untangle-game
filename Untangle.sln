@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Untangle", "Untangle\Untangle.csproj", "{2996492A-8001-4BB2-9CDA-1234F6F71AE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{8FE4B48F-B230-4847-B519-8656264AD44C}"
+EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Untangle", "Documentation\Untangle.shfbproj", "{849A56FB-76D7-4C2E-A232-8ECC8A091223}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2996492A-8001-4BB2-9CDA-1234F6F71AE9} = {2996492A-8001-4BB2-9CDA-1234F6F71AE9}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{F358343B-BD03-4A8E-B885-4F589ACBDA1C}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "UntangleSetup", "Setup\UntangleSetup\UntangleSetup.wixproj", "{DB5C1F57-3C6A-49CD-ACBE-F85FFF4B82A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2996492A-8001-4BB2-9CDA-1234F6F71AE9} = {2996492A-8001-4BB2-9CDA-1234F6F71AE9}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug with Documentation|Mixed Platforms = Debug with Documentation|Mixed Platforms
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2996492A-8001-4BB2-9CDA-1234F6F71AE9}.Debug with Documentation|Mixed Platforms.ActiveCfg = Debug with Documentation|Any CPU
+		{2996492A-8001-4BB2-9CDA-1234F6F71AE9}.Debug with Documentation|Mixed Platforms.Build.0 = Debug with Documentation|Any CPU
+		{2996492A-8001-4BB2-9CDA-1234F6F71AE9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2996492A-8001-4BB2-9CDA-1234F6F71AE9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2996492A-8001-4BB2-9CDA-1234F6F71AE9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2996492A-8001-4BB2-9CDA-1234F6F71AE9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{849A56FB-76D7-4C2E-A232-8ECC8A091223}.Debug with Documentation|Mixed Platforms.ActiveCfg = Debug with Documentation|Any CPU
+		{849A56FB-76D7-4C2E-A232-8ECC8A091223}.Debug with Documentation|Mixed Platforms.Build.0 = Debug with Documentation|Any CPU
+		{849A56FB-76D7-4C2E-A232-8ECC8A091223}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{849A56FB-76D7-4C2E-A232-8ECC8A091223}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DB5C1F57-3C6A-49CD-ACBE-F85FFF4B82A7}.Debug with Documentation|Mixed Platforms.ActiveCfg = Debug|x86
+		{DB5C1F57-3C6A-49CD-ACBE-F85FFF4B82A7}.Debug with Documentation|Mixed Platforms.Build.0 = Debug|x86
+		{DB5C1F57-3C6A-49CD-ACBE-F85FFF4B82A7}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{DB5C1F57-3C6A-49CD-ACBE-F85FFF4B82A7}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{DB5C1F57-3C6A-49CD-ACBE-F85FFF4B82A7}.Release|Mixed Platforms.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{849A56FB-76D7-4C2E-A232-8ECC8A091223} = {8FE4B48F-B230-4847-B519-8656264AD44C}
+		{DB5C1F57-3C6A-49CD-ACBE-F85FFF4B82A7} = {F358343B-BD03-4A8E-B885-4F589ACBDA1C}
+	EndGlobalSection
+EndGlobal
